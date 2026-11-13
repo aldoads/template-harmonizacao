@@ -63,86 +63,107 @@ function applyPalette(paletteKey) {
   root.style.setProperty("--border-subtle", p.borderSubtle);
   root.style.setProperty("--blob-1", p.blob1);
   root.style.setProperty("--blob-2", p.blob2);
+
+  // Salva a preferência na memória do navegador
+  localStorage.setItem("cliente_paleta_ativa", paletteKey);
+}
+
+// Função para alternar entre esconder e mostrar o painel de paletas
+function togglePalettePanel() {
+  const panel = document.getElementById("palette-panel");
+  const openBtn = document.getElementById("palette-open-btn");
+
+  if (!panel || !openBtn) return;
+
+  if (panel.style.display === "none") {
+    panel.style.display = "flex";
+    openBtn.classList.add("hidden");
+    openBtn.classList.remove("flex");
+  } else {
+    panel.style.display = "none";
+    openBtn.classList.remove("hidden");
+    openBtn.classList.add("flex");
+  }
 }
 
 /**
  * ============================================================================
- * 2. CONTEÚDO DO CLIENTE (Troque apenas este objeto para replicar para outros)
+ * 2. CONTEÚDO DO CLIENTE (Dados Reais da Dra. Bruna Santana)
  * ============================================================================
  */
 const CLIENT_CONFIG = {
   paletaInicial: "sua-paleta", // Define qual paleta abre por padrão
   doutora: {
     nome: "Dra. Bruna Santana",
-    credenciais: "Cirurgiã-Dentista • CRO-PB 0000 | Harmonização Orofacial",
+    credenciais: "Cirurgiã-Dentista • CRO-PB 5485 | Harmonização Orofacial",
     cidade: "Patos, PB",
-    endereco: "Edifício Empresarial Premium, Sala 402 — Centro, Patos - PB",
+    endereco: "Rua Horácio Nóbrega, 199 - Loja 199, Piso L1, Bairro Bela Vista — Patos, PB",
     whatsappNumero: "5583996343411",
     whatsappMensagem: "Olá, Dra. Bruna! Vim pelo site e gostaria de agendar uma avaliação de Harmonização Facial.",
-    instagramUrl: "https://instagram.com/"
+    instagramUrl: "https://www.instagram.com/drabrunasantana.oliveira"
   },
   hero: {
     badge: "Harmonização Orofacial de Alta Precisão",
     titulo: "A arte de realçar a sua beleza sem apagar a sua essência.",
     subtitulo: "Protocolos individualizados que respeitam a anatomia, a naturalidade dos movimentos e o gerenciamento elegante do envelhecimento.",
-    imagem: "imagens/dra-bruna.png" // <-- Substitua pelo caminho da sua imagem local
+    imagem: "imagens/dra-bruna.png"
   },
   filosofia: "A verdadeira elegância mora na sutileza. Cada rosto carrega uma história única, e o nosso compromisso é devolver frescor, contorno e harmonia — para que você se reconheça no espelho em sua melhor versão, com leveza e naturalidade.",
   procedimentos: [
     {
       ordem: "01",
-      nome: "Toxina Botulínica",
+      nome: "Botox Preventivo",
       subtitulo: "Prevenção & Suavidade",
-      descricao: "Relaxamento muscular estratégico para suavizar linhas de expressão mantendo a naturalidade do olhar e do sorriso, sem aspecto congelado."
+      descricao: "Relaxamento muscular estratégico para suavizar linhas de expressão e prevenir rugas dinâmicas, mantendo a naturalidade do olhar e do sorriso."
     },
     {
       ordem: "02",
-      nome: "Preenchimento com Ácido Hialurônico",
+      nome: "Estruturação Facial com Ácido Hialurônico",
       subtitulo: "Estruturação & Contorno",
-      descricao: "Reposição de volume em pontos de sustentação (lábios, malar, mento e olheiras) para devolver proporção e equilíbrio facial."
+      descricao: "Reposição de volume e suporte em pontos de sustentação para devolver proporção, definição de contorno e equilíbrio à arquitetura da face."
     },
     {
       ordem: "03",
-      nome: "Bioestimuladores de Colágeno",
+      nome: "Bioestímulo de Colágeno",
       subtitulo: "Firmeza & Qualidade de Pele",
-      descricao: "Estímulo biológico profundo para recuperar a espessura dérmica, tratar a flacidez e construir uma poupança de colágeno duradoura."
+      descricao: "Estímulo biológico profundo para recuperar a densidade dérmica, tratar a flacidez e promover sustentação natural de longa duração."
     },
     {
       ordem: "04",
-      nome: "Fios de Sustentação & Tecnologias",
-      subtitulo: "Reposicionamento Tecidual",
-      descricao: "Protocolos combinados para efeito lifting não cirúrgico, definindo o contorno mandibular e tratando a delicada região das pálpebras."
+      nome: "Skinbooster & Hidratação Profunda",
+      subtitulo: "Luminosidade & Vigor",
+      descricao: "Hidratação injetável de alta performance que devolve o viço, a elasticidade e a luminosidade natural à pele do rosto, pescoço e colo."
     }
   ],
   experiencia: [
     {
       passo: "Etapa 01",
       titulo: "Consulta & Diagnóstico Anatômico",
-      descricao: "Uma conversa tranquila para ouvir seus desejos, seguida por uma análise detalhada das proporções faciais, qualidade da pele e dinâmica muscular."
+      descricao: "Uma conversa detalhada para ouvir suas expectativas, seguida por uma análise minuciosa das proporções faciais e estrutura de pele."
     },
     {
       passo: "Etapa 02",
       titulo: "Planejamento Individualizado",
-      descricao: "Desenhamos um plano de tratamento exclusivo e cronológico, priorizando sempre os procedimentos que trarão o resultado mais elegante e seguro."
+      descricao: "Desenvolvimento de um plano de tratamento exclusivo e seguro, priorizando a harmonia e o rejuvenescimento elegante."
     },
     {
       passo: "Etapa 03",
       titulo: "Procedimento com Conforto Absoluto",
-      descricao: "Realizado em ambiente preparado para acolher você com calma, protocolos rigorosos de biossegurança, anestesia cuidadosa e produtos de excelência mundial."
+      descricao: "Execução em ambiente acolhedor, com rigorosos padrões de biossegurança, técnicas avançadas e foco total no seu bem-estar."
     },
     {
       passo: "Etapa 04",
       titulo: "Acompanhamento Próximo",
-      descricao: "Estaremos ao seu lado em todas as fases do pós-procedimento até o retorno de revisão, garantindo sua tranquilidade e evolução ideal."
+      descricao: "Suporte contínuo no pós-procedimento e retorno agendado para revisão e validação dos resultados obtidos."
     }
   ],
   sobre: {
-    bio: "Especialista em Harmonização Orofacial, dedica sua prática clínica a resultados que unem rigor anatômico e sensibilidade estética. Acredita que procedimentos estéticos de alto padrão não devem transformar quem você é, mas devolver o descanso e a confiança à sua expressão.",
-    foto: "imagens/dra-bruna.png", // <-- Substitua pelo caminho da sua imagem local
+    bio: "Cirurgiã-Dentista com 11 anos de formação e 4 anos dedicados exclusivamente à Harmonização Orofacial. Graduada pela UFCG, com pós-graduação em Cirurgia Oral Menor pela UNIFIP e especialização em Harmonização Facial realizada no IOA-CG. Une sólido conhecimento anatômico e sensibilidade estética para entregar resultados seguros e sofisticados.",
+    foto: "imagens/dra-bruna-1.png",
     destaques: [
-      "Graduada em Odontologia pela UFCG e Pós-Graduada em Harmonização Orofacial pela UNIFIP",
-      "Atualização contínua em anatomia avançada e gerenciamento do envelhecimento",
-      "Atendimento exclusivo com tempo dedicado a cada paciente"
+      "Graduada em Odontologia pela UFCG (11 anos de experiência clínica)",
+      "Pós-graduada em Cirurgia Oral Menor pela UNIFIP",
+      "Especializada em Harmonização Facial pelo IOA-CG (4 anos focada na área)"
     ]
   },
   depoimentos: [
@@ -172,8 +193,9 @@ const CLIENT_CONFIG = {
 function renderPageContent() {
   const { paletaInicial, doutora, hero, filosofia, procedimentos, experiencia, sobre, depoimentos } = CLIENT_CONFIG;
   
-  // Aplica a paleta padrão configurada
-  applyPalette(paletaInicial);
+  // Recupera a paleta salva ou usa a inicial
+  const savedPalette = localStorage.getItem("cliente_paleta_ativa") || paletaInicial;
+  applyPalette(savedPalette);
 
   const waLink = `https://wa.me/${doutora.whatsappNumero}?text=${encodeURIComponent(doutora.whatsappMensagem)}`;
 

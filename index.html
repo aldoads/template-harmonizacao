@@ -189,10 +189,13 @@
 </head>
 <body class="antialiased">
 
-  <!-- PAINEL DE TESTE DE IDENTIDADE VISUAL (Troca em tempo real) 
-  <div class="fixed top-20 right-4 z-50 bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-black/10 flex flex-col gap-2 text-xs">
-    <span class="font-semibold text-gray-500 px-1 text-[10px] uppercase tracking-wider">Testar Paleta:</span>
-    
+  <!-- PAINEL DE TESTE DE IDENTIDADE VISUAL (Com botão de fechar) -->
+  <div id="palette-panel" class="fixed top-20 right-4 z-50 bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-black/10 flex flex-col gap-2 text-xs transition-all duration-300">
+    <div class="flex items-center justify-between pb-1 border-b border-gray-100 mb-1">
+      <span class="font-semibold text-gray-500 text-[10px] uppercase tracking-wider">Testar Paleta:</span>
+      <button onclick="togglePalettePanel()" class="text-gray-400 hover:text-gray-700 text-[11px] font-bold px-1.5 py-0.5 rounded bg-gray-100 transition">✕ Ocultar</button>
+    </div>
+
     <button onclick="applyPalette('sua-paleta')" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#FAFAF8] text-[#1F2622] border-2 border-[#4A6B5B] font-medium text-left hover:scale-[1.02] transition shadow-sm">
       <span class="flex -space-x-1">
         <span class="w-3.5 h-3.5 rounded-full bg-[#1F2622] border border-white"></span>
@@ -219,7 +222,12 @@
       </span>
       <span>Dark Luxury (Inverso)</span>
     </button>
-  </div>  -->
+  </div>
+
+  <!-- BOTÃO FLUTUANTE PARA REABRIR O PAINEL -->
+  <button id="palette-open-btn" onclick="togglePalettePanel()" class="fixed top-6 right-6 z-50 hidden items-center gap-2 bg-gray-900 text-white px-4 py-2.5 rounded-full shadow-lg text-xs font-medium hover:bg-gray-800 transition transform hover:scale-105">
+    <span>🎨 Escolher Cores</span>
+  </button>
 
   <!-- FUNDO FLUIDO -->
   <div class="blob-container" aria-hidden="true">
@@ -276,9 +284,11 @@
         <div class="lg:col-span-5 order-1 lg:order-2">
           <div class="relative mx-auto max-w-md lg:max-w-none">
             <div class="image-mask-reveal rounded-t-full rounded-b-[40px] overflow-hidden aspect-[4/5] shadow-2xl theme-border">
-              <img id="hero-image" src="" alt="Retrato da Doutora" class="w-full h-full object-cover object-top scale-100 parallax-img">
+              <!-- object-[center_25%] garante que o foco fique exatamente no rosto da doutora -->
+              <img id="hero-image" src="" alt="Retrato da Doutora" class="w-full h-full object-cover object-[center_-20%] scale-100 parallax-img">
             </div>
-            <!-- Card flutuante na cor #E3D5C9 -->
+            
+            <!-- Card flutuante e linha minimalista inferior -->
             <div class="theme-floating-badge absolute -bottom-5 -left-4 px-6 py-4 rounded-2xl shadow-xl reveal-up">
               <p class="font-heading italic text-xl theme-text-primary leading-tight font-medium">Beleza com propósito,</p>
               <p class="text-[11px] uppercase tracking-widest theme-text-secondary mt-0.5">ciência e naturalidade.</p>
@@ -327,12 +337,13 @@
 
     <!-- 5. SOBRE A DOUTORA -->
     <section id="sobre" class="py-24 md:py-32 px-6 md:px-12">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-5">
-          <div class="image-mask-reveal rounded-3xl overflow-hidden aspect-[4/5] shadow-xl theme-border">
-            <img id="about-image" src="" alt="Foto da Doutora no Consultório" class="w-full h-full object-cover object-top parallax-img">
-          </div>
+        <!-- Usamos aspect-[3/4] para acompanhar o formato vertical real da foto -->
+        <div class="image-mask-reveal rounded-3xl overflow-hidden aspect-[3/4] shadow-xl theme-border">
+            <img id="about-image" src="" alt="Foto da Doutora no Consultório" class="w-full h-full object-cover object-[center_top] parallax-img">
+        </div>
         </div>
 
         <div class="lg:col-span-7 space-y-6">
@@ -371,7 +382,7 @@
     <section class="py-24 md:py-32 px-6 md:px-12 relative overflow-hidden">
       <div class="theme-cta-box max-w-4xl mx-auto text-center space-y-8 p-10 sm:p-16 rounded-[32px] shadow-sm reveal-up">
         <span class="text-xs uppercase tracking-[0.25em] theme-text-accent font-semibold block">Atendimento Individualizado</span>
-        <h2 class="font-heading text-3xl sm:text-5xl theme-text-primary font-normal leading-tight">Pronta para realçar sua beleza com naturalidade e segurança?</h2>
+        <h2 class="font-heading text-3xl sm:text-5xl theme-text-primary font-normal leading-tight">Pronta(o) para realçar sua beleza com naturalidade e segurança?</h2>
         <p id="footer-address" class="text-sm sm:text-base font-light theme-text-secondary"></p>
         
         <div class="pt-2 flex flex-col sm:flex-row justify-center gap-4">
